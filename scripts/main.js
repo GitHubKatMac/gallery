@@ -24,7 +24,7 @@ loader.show();
 function renderPhoto(photo) {
     const $card = document.createElement('div');
     $card.classList.add('card', 'col-3', 'mx-4');
-    
+
     $card.classList.add('card');
     $card.style.width = '30%'
 
@@ -63,11 +63,6 @@ setTimeout(function () {
 // renderPhoto('https://picsum.photos/id/20/300/150');
 // renderPhoto('https://picsum.photos/id/30/300/150');
 // displayPhotos(images);
-function displayMessage(message) {
-    const main = document.querySelector('main');
-    // main.textContent=message;
-    main.innerHTML = '<p class="alert alert-info text-center">' + message + '</p>'
-}
 function shouldDisplayPhotos() {
     const answer = prompt('Czy chcesz wyswietlic zdjecia?');
     return (answer.toLowerCase() === 'tak');
