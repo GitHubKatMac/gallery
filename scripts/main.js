@@ -7,36 +7,33 @@
 //     console.log("To jest obrazek"+image)
 //     console.log('KM')
 // }
-const isEmpty = (images.length === 0);
-const isEmpty2 = (images.length == 0)
-function displayImages() {
-    console.log('Liczba obrazkow' + images.length);
-    console.log('Pierwszy element list' + images[0])
-    console.log('Drugi element list' + images[1])
-}
-function displayLastElement() {
-    console.log('Ost. element listy' + images[images.length - 1])
-    console.log(876234 / 2378)
-    console.log(876234 * 2378)
-}
-loader.show();
+// const isEmpty = (images.length === 0);
+// const isEmpty2 = (images.length == 0)
+// function displayImages() {
+//     console.log('Liczba obrazkow' + images.length);
+//     console.log('Pierwszy element list' + images[0])
+//     console.log('Drugi element list' + images[1])
+// }
+// function displayLastElement() {
+//     console.log('Ost. element listy' + images[images.length - 1])
+//     console.log(876234 / 2378)
+//     console.log(876234 * 2378)
+// }
+// loader.show();
 
 function renderPhoto(photo) {
     const $card = document.createElement('div');
-    $card.classList.add('card', 'col-3', 'mx-4');
-
-    $card.classList.add('card');
-    $card.style.width = '30%'
+    $card.classList.add('card', 'col-md-4', 'mb-4');
 
     const $img = document.createElement('img');
-    $img.src = photo.url;
+    $img.src = photo.imageUrl;
 
     const $body = document.createElement('div');
     $body.classList.add('card-body');
-    
+
     const $title = document.createElement('h5');
     $title.classList.add('card-title');
-    $title.textContent = photo.title;
+    $title.textContent = photo.description;
 
     $card.append($img);
     $card.append($body);
@@ -48,22 +45,19 @@ function renderPhoto(photo) {
 function displayPhotos(photos) {
     console.log(photos);
     // for (const photo of photos) {
-        // renderPhoto(photo);
+    // renderPhoto(photo);
     // }
     photos.forEach(function (photo) {
-        console.group();
-        console.info(photo.title);
-        console.warn(photo.author);
-        console.groupEnd(); 
-        renderPhoto (photo);
+        console.group(photo.description);
+        console.info(photo.author.name);
+        console.groupEnd();
+        renderPhoto(photo);
     });
 }
-setTimeout(function () {
-    console.info('chowamy loader');
-    loader.hide();
-}, 1500);
-const authors=
-}
+// setTimeout(function () {
+// console.info('chowamy loader');
+// loader.hide();
+// }, 1500);
 
 
 // displayImages();
@@ -76,10 +70,27 @@ function shouldDisplayPhotos() {
     const answer = prompt('Czy chcesz wyswietlic zdjecia?');
     return (answer.toLowerCase() === 'tak');
 }
-if (images.length > 1 && images.length < 10) {
-    console.log('zdjecia istnieja');
-    displayPhotos(images);
-} else {
-    console.log('zdjecia nie istnieja');
-    displayMessage('Nie ma zdjec');
+function main() {
+    loader.show();
+
+    fetchPhotosFromRemote()
+        .then(function (images) {
+
+            if (images.length > 1 && images.length < 10) {
+                console.log('zdjecia istnieja');
+                displayPhotos(images);
+            } else {
+                console.log('zdjecia nie istnieja');
+                displayMessage('Nie ma zdjec');
+            }
+        })
+        .catch(function () {
+            displayErrorMessage();
+        })
+        .finally(function () {
+            loader.hide();
+        });
+
 }
+
+main();

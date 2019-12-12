@@ -8,7 +8,7 @@ function displayMessage(message, label = 'alert-info') {
         <p>
     `;
 }
+
 function displayErrorMessage(errorMessage) {
     displayMessage(errorMessage, 'alert-danger');
-
 }
