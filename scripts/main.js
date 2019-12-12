@@ -47,14 +47,23 @@ function renderPhoto(photo) {
 }
 function displayPhotos(photos) {
     console.log(photos);
-    for (const photo of photos) {
-        renderPhoto(photo);
-    }
+    // for (const photo of photos) {
+        // renderPhoto(photo);
+    // }
+    photos.forEach(function (photo) {
+        console.group();
+        console.info(photo.title);
+        console.warn(photo.author);
+        console.groupEnd(); 
+        renderPhoto (photo);
+    });
 }
 setTimeout(function () {
     console.info('chowamy loader');
     loader.hide();
 }, 1500);
+const authors=
+}
 
 
 // displayImages();
