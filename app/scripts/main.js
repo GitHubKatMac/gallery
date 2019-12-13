@@ -75,11 +75,12 @@ function main() {
 
     fetchPhotosFromLocal()
         .then(function (images) {
-        return images.map(function (image) {
-            image.imageUrl = image.url;
-            image.description = image.title;
-            return image;
-        });
+            return images.map(function (image) {
+                image.imageUrl = image.url;
+                image.description = image.title;
+                return image;
+            })
+        })
         .then(function (images) {
             if (images.length > 1 && images.length < 10) {
                 console.log('zdjecia istnieja');
